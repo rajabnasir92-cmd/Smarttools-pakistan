@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free online tools for CVs, cover letters, applications and student notes.">
+<meta name="theme-color" content="#172554">
+<title>SmartTools Pakistan — Free Online Tools</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--sky:#eaf2ff;--ink:#172033;--muted:#64748b;--line:#e2e8f0;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:#f8faff}
+header{background:linear-gradient(120deg,#172554,#1d4ed8);color:white;padding:24px 18px 48px}
+nav,.hero,.wrap{max-width:1050px;margin:auto}nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:1.2rem;font-weight:800;letter-spacing:.2px}.logo span{color:#93c5fd}
+nav a{color:white;text-decoration:none;font-size:.92rem;margin-left:16px}
+.hero{padding-top:42px}.eyebrow{color:#bfdbfe;font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:1.3px}
+h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.08;margin:12px 0}
+.hero p{max-width:620px;color:#dbeafe;font-size:1.05rem;line-height:1.6}
+.search{margin-top:22px;max-width:500px;display:flex;background:white;padding:5px;border-radius:12px}
+.search input{border:0;outline:0;padding:12px;min-width:0;flex:1;font-size:1rem}.search button,.primary{background:var(--blue);color:white;border:0;border-radius:9px;padding:12px 17px;font-weight:700}
+.wrap{padding:30px 18px 60px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:8px 0 18px}
+h2{margin:0;color:var(--navy);font-size:1.55rem}.muted{color:var(--muted);font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:white;border:1px solid var(--line);border-radius:16px;padding:19px;box-shadow:0 5px 18px #1e3a8a0a}
+.card .ico{font-size:1.8rem}.card h3{margin:10px 0 6px;color:var(--navy)}.card p{color:var(--muted);font-size:.92rem;line-height:1.5;min-height:42px}
+.card button{width:100%;cursor:pointer}
+.panel{display:none;margin-top:24px;background:white;border:1px solid var(--line);border-radius:16px;padding:20px}
+.panel.active{display:block}.panel h2{margin-bottom:14px}
+.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+label{display:block;font-weight:650;font-size:.9rem;margin-bottom:5px}
+input,textarea,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;background:white}
+textarea{min-height:100px;resize:vertical}.field{margin-bottom:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.secondary{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:9px;padding:11px 15px;font-weight:700}
+.output{white-space:pre-wrap;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:15px;margin-top:15px;line-height:1.6;min-height:50px}
+.notice{background:#eff6ff;border-left:4px solid #3b82f6;padding:12px 14px;border-radius:8px;color:#1e3a8a;font-size:.9rem;margin-top:20px}
+footer{background:#0f172a;color:#cbd5e1;padding:28px 18px;text-align:center;font-size:.9rem}
+@media(max-width:560px){nav a{margin-left:8px;font-size:.82rem}.hero{padding-top:30px}.section-head{display:block}.search button{padding:10px}}
+</style>
+</head>
+<body>
+<header>
+<nav><div class="logo">SmartTools <span>Pakistan</span></div><div><a href="#tools">Tools</a><a href="#about">About</a></div></nav>
+<section class="hero">
+<div class="eyebrow">Simple • Free • Useful</div>
+<h1>Everyday tools.<br>All in one place.</h1>
+<p>Create a CV, write a cover letter, prepare an application or organize your study notes — quickly and free.</p>
+<div class="search"><input id="search" placeholder="Search a tool..." aria-label="Search tools"><button onclick="filterTools()">Search</button></div>
+</section></header>
+<main class="wrap">
+<div class="section-head" id="tools"><div><h2>Explore free tools</h2><div class="muted">Choose a tool to get started.</div></div></div>
+<div class="grid" id="toolGrid">
+<article class="card" data-name="cv resume maker"><div class="ico">📄</div><h3>CV Maker</h3><p>Prepare a clean, professional CV using your details.</p><button class="primary" onclick="openTool('cv')">Open CV Maker</button></article>
+<article class="card" data-name="cover letter job"><div class="ico">✉️</div><h3>Cover Letter Maker</h3><p>Create a job application cover letter draft.</p><button class="primary" onclick="openTool('cover')">Create Letter</button></article>
+<article class="card" data-name="application writer request"><div class="ico">📝</div><h3>Application Writer</h3><p>Draft a simple school, college or office application.</p><button class="primary" onclick="openTool('application')">Write Application</button></article>
+<article class="card" data-name="student notes study"><div class="ico">📚</div><h3>Study Notes Organizer</h3><p>Turn your topic and key points into organized notes.</p><button class="primary" onclick="openTool('notes')">Make Notes</button></article>
+<article class="card" data-name="bio profile social"><div class="ico">✨</div><h3>Bio Generator</h3><p>Build a short profile bio for your portfolio or social profile.</p><button class="primary" onclick="openTool('bio')">Generate Bio</button></article>
+<article class="card" data-name="word counter text"><div class="ico">🔢</div><h3>Word Counter</h3><p>Count words and characters in any text.</p><button class="primary" onclick="openTool('counter')">Count Words</button></article>
+</div>
+
+<section class="panel" id="cv"><h2>📄 CV Maker</h2>
+<div class="formgrid">
+<div class="field"><label>Full name</label><input id="cvname" placeholder="Your full name"></div>
+<div class="field"><label>Phone / Email</label><input id="cvcontact" placeholder="Contact details"></div>
+<div class="field"><label>City</label><input id="cvcity" placeholder="Your city"></div>
+<div class="field"><label>Education</label><input id="cvedu" placeholder="Your education"></div>
+<div class="field"><label>Skills</label><input id="cvskills" placeholder="e.g. Communication, MS Office"></div>
+<div class="field"><label>Experience (optional)</label><input id="cvexp" placeholder="Work or volunteer experience"></div>
+</div><div class="field"><label>Profile summary</label><textarea id="cvsummary" placeholder="Write 2–3 sentences about yourself"></textarea></div>
+<div class="actions"><button class="primary" onclick="makeCV()">Generate CV</button><button class="secondary" onclick="printOutput('cvout')">Print / Save PDF</button></div><div class="output" id="cvout">Your CV preview will appear here.</div></section>
+
+<section class="panel" id="cover"><h2>✉️ Cover Letter Maker</h2>
+<div class="formgrid"><div class="field"><label>Your name</label><input id="covername" placeholder="Your name"></div><div class="field"><label>Job title</label><input id="coverjob" placeholder="e.g. Office Assistant"></div><div class="field"><label>Company</label><input id="covercompany" placeholder="Company name"></div></div>
+<div class="field"><label>Your relevant skills</label><textarea id="coverskills" placeholder="Mention your skills and strengths"></textarea></div>
+<div class="actions"><button class="primary" onclick="makeCover()">Generate Letter</button><button class="secondary" onclick="copyOutput('coverout')">Copy Text</button></div><div class="output" id="coverout">Your letter will appear here.</div></section>
+
+<section class="panel" id="application"><h2>📝 Application Writer</h2>
+<div class="formgrid"><div class="field"><label>Your name</label><input id="appname" placeholder="Your name"></div><div class="field"><label>Recipient</label><input id="apprecipient" placeholder="The Principal / Manager"></div><div class="field"><label>Subject</label><input id="appsubject" placeholder="e.g. Leave application"></div></div>
+<div class="field"><label>Reason / Details</label><textarea id="appreason" placeholder="Explain your request briefly"></textarea></div>
+<div class="actions"><button class="primary" onclick="makeApplication()">Write Application</button><button class="secondary" onclick="copyOutput('appout')">Copy Text</button></div><div class="output" id="appout">Your application will appear here.</div></section>
+
+<section class="panel" id="notes"><h2>📚 Study Notes Organizer</h2>
+<div class="field"><label>Topic</label><input id="notetopic" placeholder="e.g. Photosynthesis"></div><div class="field"><label>Key points (one per line)</label><textarea id="notepoints" placeholder="Enter the main points you want to remember"></textarea></div>
+<div class="actions"><button class="primary" onclick="makeNotes()">Organize Notes</button><button class="secondary" onclick="copyOutput('notesout')">Copy Notes</button></div><div class="output" id="notesout">Your organized notes will appear here.</div></section>
+
+<section class="panel" id="bio"><h2>✨ Bio Generator</h2>
+<div class="formgrid"><div class="field"><label>Your name</label><input id="bioname" placeholder="Your name"></div><div class="field"><label>Your role</label><input id="biorole" placeholder="e.g. Student, Designer"></div></div><div class="field"><label>Interests and strengths</label><textarea id="biointerests" placeholder="What do you enjoy or do well?"></textarea></div>
+<div class="actions"><button class="primary" onclick="makeBio()">Generate Bio</button><button class="secondary" onclick="copyOutput('bioout')">Copy Bio</button></div><div class="output" id="bioout">Your bio will appear here.</div></section>
+
+<section class="panel" id="counter"><h2>🔢 Word Counter</h2><div class="field"><label>Paste your text</label><textarea id="counttext" oninput="countWords()" placeholder="Type or paste text here..."></textarea></div><div class="output" id="countout">Words: 0 | Characters: 0</div></section>
+<div class="notice" id="about"><strong>About SmartTools Pakistan:</strong> Our goal is to make useful everyday writing and study tools easy to access. Your entries are processed in this browser and are not sent to a server by this starter website. Always review generated drafts before using them.</div>
+</main>
+<footer>© 2026 SmartTools Pakistan · Free tools for everyday tasks</footer>
+<script>
+function openTool(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function val(id){return document.getElementById(id).value.trim()}
+function setOut(id,text){document.getElementById(id).textContent=text}
+function makeCV(){let n=val('cvname')||'Your Name';setOut('cvout',`${n.toUpperCase()}\\n${val('cvcontact')} | ${val('cvcity')}\\n\\nPROFILE\\n${val('cvsummary')}\\n\\nEDUCATION\\n${val('cvedu')}\\n\\nSKILLS\\n${val('cvskills')}\\n\\nEXPERIENCE\\n${val('cvexp')||'Add relevant experience if available.'}`)}
+function makeCover(){setOut('coverout',`Dear Hiring Manager,\\n\\nI am writing to apply for the position of ${val('coverjob')||'[Job Title]'} at ${val('covercompany')||'[Company]'}. My name is ${val('covername')||'[Your Name]'}.\\n\\n${val('coverskills')||'I am motivated to contribute positively to your team and eager to learn.'}\\n\\nThank you for considering my application. I would welcome the opportunity to discuss my suitability for this role.\\n\\nSincerely,\\n${val('covername')||'[Your Name]'}`)}
+function makeApplication(){setOut('appout',`To,\\n${val('apprecipient')||'[Recipient]'}\\n\\nSubject: ${val('appsubject')||'[Subject]'}\\n\\nRespected Sir/Madam,\\n\\nI am ${val('appname')||'[Your Name]'}. ${val('appreason')||'[Explain your request here]'}\\n\\nI kindly request you to consider my application. I shall be grateful for your support.\\n\\nYours faithfully,\\n${val('appname')||'[Your Name]'}`)}
+function makeNotes(){let pts=val('notepoints').split('\\n').map(x=>x.trim()).filter(Boolean);setOut('notesout',`${val('notetopic')||'Study Topic'}\\n${'='.repeat((val('notetopic')||'Study Topic').length)}\\n\\nKEY POINTS\\n${pts.length?pts.map((p,i)=>`${i+1}. ${p}`).join('\\n'):'Add some key points above.'}\\n\\nREVISION TIP\\nReview these points and explain each one in your own words.`)}
+function makeBio(){setOut('bioout',`${val('bioname')||'Your Name'} | ${val('biorole')||'Your Role'}\\n${val('biointerests')||'Curious, motivated and always learning.'}`)}
+function countWords(){let t=val('counttext');let words=t? t.split(/\\s+/).filter(Boolean).length:0;setOut('countout',`Words: ${words} | Characters: ${t.length} | Characters without spaces: ${t.replace(/\\s/g,'').length}`)}
+function copyOutput(id){let t=document.getElementById(id).textContent;navigator.clipboard?.writeText(t).then(()=>alert('Copied!')).catch(()=>alert('Please select and copy the text manually.'))}
+function printOutput(id){let t=document.getElementById(id).textContent;let w=window.open('','_blank');if(!w){alert('Allow pop-ups to print or save PDF.');return}w.document.write('<pre style="white-space:pre-wrap;font:14px Arial;padding:25px">'+t.replace(/</g,'&lt;')+'</pre>');w.document.close();w.print()}
+function filterTools(){let q=val('search').toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.dataset.name.includes(q)?'block':'none')}
+document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Enter')filterTools()});
+</script>
+</body></html>
