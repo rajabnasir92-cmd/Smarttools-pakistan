@@ -90,7 +90,15 @@ footer{background:#0f172a;color:#cbd5e1;padding:28px 18px;text-align:center;font
 <section class="panel" id="counter"><h2>🔢 Word Counter</h2><div class="field"><label>Paste your text</label><textarea id="counttext" oninput="countWords()" placeholder="Type or paste text here..."></textarea></div><div class="output" id="countout">Words: 0 | Characters: 0</div></section>
 <div class="notice" id="about"><strong>About SmartTools Pakistan:</strong> Our goal is to make useful everyday writing and study tools easy to access. Your entries are processed in this browser and are not sent to a server by this starter website. Always review generated drafts before using them.</div>
 </main>
-<footer>© 2026 SmartTools Pakistan · Free tools for everyday tasks</footer>
+<footer>
+  <p>© 2026 SmartTools Pakistan · Free tools for everyday tasks</p>
+  <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:15px">
+    <a href="about.html" style="color:#bfdbfe">About Us</a>
+    <a href="privacy-policy.html" style="color:#bfdbfe">Privacy Policy</a>
+    <a href="contact.html" style="color:#bfdbfe">Contact Us</a>
+    <a href="terms.html" style="color:#bfdbfe">Terms &amp; Conditions</a>
+  </div>
+</footer>
 <script>
 function openTool(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 function val(id){return document.getElementById(id).value.trim()}
