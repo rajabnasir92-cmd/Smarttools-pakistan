@@ -156,10 +156,76 @@ ${val('cvexp')||'Add relevant experience if available.'}`;
 
 setOut('cvout',cv);
 }
-function makeCover(){setOut('coverout',`Dear Hiring Manager,\\n\\nI am writing to apply for the position of ${val('coverjob')||'[Job Title]'} at ${val('covercompany')||'[Company]'}. My name is ${val('covername')||'[Your Name]'}.\\n\\n${val('coverskills')||'I am motivated to contribute positively to your team and eager to learn.'}\\n\\nThank you for considering my application. I would welcome the opportunity to discuss my suitability for this role.\\n\\nSincerely,\\n${val('covername')||'[Your Name]'}`)}
-function makeApplication(){setOut('appout',`To,\\n${val('apprecipient')||'[Recipient]'}\\n\\nSubject: ${val('appsubject')||'[Subject]'}\\n\\nRespected Sir/Madam,\\n\\nI am ${val('appname')||'[Your Name]'}. ${val('appreason')||'[Explain your request here]'}\\n\\nI kindly request you to consider my application. I shall be grateful for your support.\\n\\nYours faithfully,\\n${val('appname')||'[Your Name]'}`)}
-function makeNotes(){let pts=val('notepoints').split('\\n').map(x=>x.trim()).filter(Boolean);setOut('notesout',`${val('notetopic')||'Study Topic'}\\n${'='.repeat((val('notetopic')||'Study Topic').length)}\\n\\nKEY POINTS\\n${pts.length?pts.map((p,i)=>`${i+1}. ${p}`).join('\\n'):'Add some key points above.'}\\n\\nREVISION TIP\\nReview these points and explain each one in your own words.`)}
-function makeBio(){setOut('bioout',`${val('bioname')||'Your Name'} | ${val('biorole')||'Your Role'}\\n${val('biointerests')||'Curious, motivated and always learning.'}`)}
+function makeCover(){
+let t=`COVER LETTER
+
+${val('covername')}
+
+To: ${val('covercompany')||'Hiring Manager'}
+
+Subject: Application for ${val('coverjob')||'Job Position'}
+
+Dear Hiring Manager,
+
+I am writing to apply for the position of ${val('coverjob')||'[Job Title]'} at ${val('covercompany')||'[Company]'}.
+
+${val('coverskills')||'I am motivated to contribute positively to your team and eager to learn.'}
+
+Thank you for considering my application.
+
+Sincerely,
+${val('covername')}`;
+setOut('coverout',t);
+}
+function makeApplication(){
+let t=`APPLICATION
+
+To,
+${val('apprecipient')||'[Recipient]'}
+
+Subject: ${val('appsubject')||'[Subject]'}
+
+Respected Sir/Madam,
+
+I am ${val('appname')||'[Your Name]'}.
+
+${val('appreason')||'[Explain your request here]'}
+
+I kindly request you to consider my application. I shall be grateful for your support.
+
+Yours faithfully,
+${val('appname')||'[Your Name]'}`;
+setOut('appout',t);
+  }
+  function makeNotes(){
+let topic=val('notetopic')||'Study Topic';
+let pts=val('notepoints').split('\n').map(x=>x.trim()).filter(Boolean);
+let t=`STUDY NOTES
+
+TOPIC: ${topic}
+
+KEY POINTS
+
+${pts.length?pts.map((p,i)=>(i+1)+'. '+p).join('\n\n'):'Add some key points above.'}
+
+REVISION TIP
+
+Review these points and explain each one in your own words.`;
+setOut('notesout',t);
+  }
+function makeBio(){
+let t=`PERSONAL BIO
+
+NAME
+${val('bioname')||'Your Name'}
+
+ROLE
+${val('biorole')||'Your Role'}
+
+INTERESTS AND STRENGTHS
+${val('biointerests')||'Curious, motivated and always learning.'}`;
+setOut('bioout',t);
+}
 function countWords(){let t=val('counttext');let words=t? t.split(/\\s+/).filter(Boolean).length:0;setOut('countout',`Words: ${words} | Characters: ${t.length} | Characters without spaces: ${t.replace(/\\s/g,'').length}`)}
 function copyOutput(id){let t=document.getElementById(id).textContent;navigator.clipboard?.writeText(t).then(()=>alert('Copied!')).catch(()=>alert('Please select and copy the text manually.'))}
 function printOutput(id){
