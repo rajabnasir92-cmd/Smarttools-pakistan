@@ -134,14 +134,70 @@ footer{background:#0f172a;color:#cbd5e1;padding:28px 18px;text-align:center;font
 function openTool(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 function val(id){return document.getElementById(id).value.trim()}
 function setOut(id,text){document.getElementById(id).textContent=text}
-function makeCV(){let n=val('cvname')||'Your Name';setOut('cvout',`${n.toUpperCase()}\\n${val('cvcontact')} | ${val('cvcity')}\\n\\nPROFILE\\n${val('cvsummary')}\\n\\nEDUCATION\\n${val('cvedu')}\\n\\nSKILLS\\n${val('cvskills')}\\n\\nEXPERIENCE\\n${val('cvexp')||'Add relevant experience if available.'}`)}
+function makeCV(){
+let n=val('cvname')||'Your Name';
+let cv=`${n.toUpperCase()}
+
+CONTACT DETAILS
+${val('cvcontact')}
+${val('cvcity')}
+
+PROFILE SUMMARY
+${val('cvsummary')}
+
+EDUCATION
+${val('cvedu')}
+
+SKILLS
+${val('cvskills')}
+
+EXPERIENCE
+${val('cvexp')||'Add relevant experience if available.'}`;
+
+setOut('cvout',cv);
+}
 function makeCover(){setOut('coverout',`Dear Hiring Manager,\\n\\nI am writing to apply for the position of ${val('coverjob')||'[Job Title]'} at ${val('covercompany')||'[Company]'}. My name is ${val('covername')||'[Your Name]'}.\\n\\n${val('coverskills')||'I am motivated to contribute positively to your team and eager to learn.'}\\n\\nThank you for considering my application. I would welcome the opportunity to discuss my suitability for this role.\\n\\nSincerely,\\n${val('covername')||'[Your Name]'}`)}
 function makeApplication(){setOut('appout',`To,\\n${val('apprecipient')||'[Recipient]'}\\n\\nSubject: ${val('appsubject')||'[Subject]'}\\n\\nRespected Sir/Madam,\\n\\nI am ${val('appname')||'[Your Name]'}. ${val('appreason')||'[Explain your request here]'}\\n\\nI kindly request you to consider my application. I shall be grateful for your support.\\n\\nYours faithfully,\\n${val('appname')||'[Your Name]'}`)}
 function makeNotes(){let pts=val('notepoints').split('\\n').map(x=>x.trim()).filter(Boolean);setOut('notesout',`${val('notetopic')||'Study Topic'}\\n${'='.repeat((val('notetopic')||'Study Topic').length)}\\n\\nKEY POINTS\\n${pts.length?pts.map((p,i)=>`${i+1}. ${p}`).join('\\n'):'Add some key points above.'}\\n\\nREVISION TIP\\nReview these points and explain each one in your own words.`)}
 function makeBio(){setOut('bioout',`${val('bioname')||'Your Name'} | ${val('biorole')||'Your Role'}\\n${val('biointerests')||'Curious, motivated and always learning.'}`)}
 function countWords(){let t=val('counttext');let words=t? t.split(/\\s+/).filter(Boolean).length:0;setOut('countout',`Words: ${words} | Characters: ${t.length} | Characters without spaces: ${t.replace(/\\s/g,'').length}`)}
 function copyOutput(id){let t=document.getElementById(id).textContent;navigator.clipboard?.writeText(t).then(()=>alert('Copied!')).catch(()=>alert('Please select and copy the text manually.'))}
-function printOutput(id){let t=document.getElementById(id).textContent;let w=window.open('','_blank');if(!w){alert('Allow pop-ups to print or save PDF.');return}w.document.write('<pre style="white-space:pre-wrap;font:14px Arial;padding:25px">'+t.replace(/</g,'&lt;')+'</pre>');w.document.close();w.print()}
+function printOutput(id){
+let t=document.getElementById(id).textContent;
+let w=window.open('','_blank');
+
+if(!w){
+alert('Please allow pop-ups to print or save PDF.');
+return;
+}
+
+w.document.write(`
+<html>
+<head>
+<title>My CV - SmartTools Pakistan</title>
+<style>
+body{
+font-family:Arial,sans-serif;
+padding:35px;
+line-height:1.8;
+color:#172033;
+}
+pre{
+white-space:pre-wrap;
+overflow-wrap:break-word;
+font:15px Arial;
+}
+</style>
+</head>
+<body>
+<pre>${t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+</body>
+</html>
+`);
+
+w.document.close();
+w.print();
+}
 function filterTools(){let q=val('search').toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.dataset.name.includes(q)?'block':'none')}
 document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Enter')filterTools()});
 </script>
